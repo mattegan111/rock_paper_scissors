@@ -1,0 +1,94 @@
+<script>
+
+var playerWins = 0;
+var computerWins = 0;
+var draws = 0;
+
+game();
+announceResults();
+
+function game() {
+    var i;
+    for(i=0; i<5; i++) {
+        var playerSelection = prompt("Rock, Paper or Scissors?");
+        alert("you chose: " + playerSelection);
+        var computerSelection = computerPlay();
+        alert("computer chose: " + computerSelection);
+
+        var roundResult = playRound(playerSelection, computerSelection);
+
+        if (roundResult == "draw") {
+            draws = draws + 1;
+        }
+
+        if (roundResult == "win") {
+            playerWins = playerWins + 1;
+        }
+
+        if (roundResult == "loss") {
+            computerWins = computerWins + 1;
+        }
+    }
+}
+
+function announceResults() {
+    if (playerWins > computerWins) {
+        alert(`You win the game. Your points: ${playerWins}. Computer Points: ${computerWins}.`);
+    }
+    else if (computerWins > playerWins) {
+        alert(`You lose the game. Your points: ${playerWins}. Computer Points: ${computerWins}.`);
+    }
+    else if (computerWins == playerWins) {
+        alert(`It's a tie! Your points: ${playerWins}. Computer Points: ${computerWins}.`);
+    }
+}
+
+function computerPlay() {
+    var ranNum = Math.floor(Math.random() * 3);
+    if (ranNum == 0)
+        return "rock";
+    if (ranNum == 1)
+        return "paper";
+    if (ranNum == 2)
+        return "scissors";
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock" && computerSelection == "rock") {
+        alert("DRAW! Rock vs Rock.")
+        return "draw";
+    }
+    if (playerSelection == "rock" && computerSelection == "paper") {
+        alert("You LOSE! Rock loses to Paper.")
+        return "loss";
+    }
+    if (playerSelection == "rock" && computerSelection == "scissors") {
+        alert("You WIN! Rock beats Scissors")
+        return "win";
+    }
+    if (playerSelection == "paper" && computerSelection == "rock") {
+        alert("You WIN! Paper beats Rock.")
+        return "win";
+    }
+    if (playerSelection == "paper" && computerSelection == "paper"){
+        alert("DRAW! Paper vs Paper.")
+        return "draw";
+    }
+    if (playerSelection == "paper" && computerSelection == "scissors") {
+        alert("You LOSE! Paper loses to Scissors.")
+        return "loss";
+    }
+    if (playerSelection == "scissors" && computerSelection == "rock") {
+        alert("You LOSE! Scissors loses to Rock.")
+        return "loss";
+    }
+    if (playerSelection == "scissors" && computerSelection == "paper") {
+        alert("You WIN! Scissors beats Paper.")
+        return "win";
+    }
+    if (playerSelection == "scissors" && computerSelection == "scissors") {
+        alert("DRAW! Scissors vs Scissors.")
+        return "draw";
+    }
+}
+</script>
